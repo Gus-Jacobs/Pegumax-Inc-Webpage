@@ -1,0 +1,788 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for easy theme adjustments */
+:root {
+    --primary-bg: #0d0d1a; /* Very dark blue/black */
+    --secondary-bg: #1a1a33; /* Slightly lighter dark blue */
+    --accent-blue: #00e6e6; /* Bright cyan/blue */
+    --accent-orange: #ff9900; /* Vibrant orange */
+    --text-color: #e0e0e0; /* Light grey for readability */
+    --heading-color: #ffffff; /* White for headings */
+    --border-color: #2c2c5c; /* Darker blue for borders */
+    --gradient-blue: linear-gradient(90deg, #00e6e6, #00b3b3);
+    --gradient-orange: linear-gradient(90deg, #ff9900, #cc7a00);
+    --shadow-light: rgba(0, 230, 230, 0.5);
+    --shadow-dark: rgba(255, 153, 0, 0.5);
+    /* Establish a base font size for rem units */
+    font-size: 16px; /* Base for rem units, can adjust if needed */
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 1.25rem; /* ~20px */
+    letter-spacing: 0.09375rem; /* ~1.5px */
+    text-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.2); /* ~10px */
+}
+
+/* Hero Section Specific H1 (No Logo) */
+.hero-content h1 {
+    /* Use clamp for responsive font sizing: min-size, preferred-size, max-size */
+    font-size: clamp(3rem, 7vw, 5rem); /* From 48px to 80px */
+    text-shadow: 0 0 2.5rem var(--shadow-light); /* Stronger glow */
+    margin-bottom: 1.5rem; /* More space below H1 */
+}
+
+h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* From 40px to 56px */
+    position: relative;
+    padding-bottom: 0.9375rem; /* ~15px */
+    margin-bottom: 3.125rem; /* ~50px */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 6.25rem; /* ~100px */
+    height: 0.3125rem; /* ~5px */
+    background: var(--gradient-blue);
+    border-radius: 0.1875rem; /* ~3px */
+    box-shadow: 0 0 0.9375rem var(--shadow-light); /* ~15px */
+}
+
+h3 {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem); /* From 28px to 36px */
+    margin-bottom: 0.9375rem; /* ~15px */
+}
+
+p {
+    margin-bottom: 0.9375rem; /* ~15px */
+    font-size: 1.1rem; /* ~17.6px */
+}
+
+.section-intro {
+    font-size: 1.4rem; /* ~22.4px */
+    max-width: 56.25rem; /* ~900px */
+    margin: 0 auto 3.75rem auto; /* ~60px */
+    text-align: center;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.highlight {
+    color: var(--accent-blue);
+    text-shadow: 0 0 0.75rem var(--shadow-light); /* ~12px */
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--gradient-blue);
+    color: var(--heading-color);
+    padding: 1.125rem 2.1875rem; /* ~18px 35px */
+    border-radius: 3.125rem; /* ~50px */
+    text-decoration: none;
+    font-size: 1.3rem; /* ~20.8px */
+    font-weight: bold;
+    letter-spacing: 0.0625rem; /* ~1px */
+    transition: all 0.4s ease-in-out; /* Slower transition */
+    box-shadow: 0 0.5rem 1.875rem rgba(0, 230, 230, 0.4); /* ~8px 30px */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: 0.125rem solid transparent; /* ~2px */
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-orange);
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+.cta-button:hover {
+    transform: translateY(-0.5rem) scale(1.03); /* ~8px */
+    box-shadow: 0 0.75rem 2.1875rem rgba(255, 153, 0, 0.7); /* ~12px 35px */
+    border-color: var(--accent-blue); /* Border glows on hover */
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: url('../img/img2.webp') no-repeat center center/cover;
+    background-attachment: fixed;
+    border-bottom: 0.5rem solid var(--accent-blue); /* ~8px */
+    box-shadow: 0 0 3.75rem rgba(0, 230, 230, 0.4); /* ~60px */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    backdrop-filter: blur(0.625rem); /* ~10px */
+    z-index: 1;
+}
+
+/* Hero Glow Elements */
+.hero-glow-1, .hero-glow-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(9.375rem); /* ~150px */
+    opacity: 0.2;
+    z-index: 0;
+    animation: floatingGlow 15s infinite ease-in-out alternate;
+}
+
+.hero-glow-1 {
+    background: var(--accent-blue);
+    width: 25rem; /* ~400px */
+    height: 25rem; /* ~400px */
+    top: 10%;
+    left: 5%;
+}
+
+.hero-glow-2 {
+    background: var(--accent-orange);
+    width: 21.875rem; /* ~350px */
+    height: 21.875rem; /* ~350px */
+    bottom: 15%;
+    right: 8%;
+    animation-delay: 3s; /* Stagger animation */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--heading-color);
+    padding: 1.25rem; /* ~20px */
+    animation: fadeInScale 2s ease-out forwards;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    height: 100%; /* Allow hero-content to take full height of hero-section */
+    max-width: 900px; /* Constrain width for better readability */
+    margin: 0 auto; /* Center hero-content horizontally */
+    padding: 0 20px; /* Add horizontal padding for smaller screens */
+    text-align: center; /* Ensure text alignment for removed logo */
+}
+
+/* Logo is removed from HTML, so this class is now unused for img */
+.hero-logo { 
+    display: none; /* Ensure it's hidden if somehow present */
+}
+
+.tagline {
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Responsive tagline font size */
+    margin-top: 1rem; /* Adjust spacing */
+    margin-bottom: 2rem; /* More space below tagline, above slogan */
+    font-weight: 300;
+    animation: slideInUp 1.2s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+    letter-spacing: 0.03125rem; /* ~0.5px */
+}
+
+.animated-text-container {
+    height: 4.5rem; /* Adjusted for larger font and possible wrap */
+    overflow: hidden;
+    margin-bottom: 3rem; /* More space below slogan and above button */
+    display: flex; /* Use flex to ensure content is centered vertically in its container */
+    align-items: center;
+    justify-content: center;
+}
+
+#animated-slogan {
+    font-size: clamp(1.8rem, 4vw, 3rem); /* Responsive slogan font size */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--accent-orange);
+    display: inline-block;
+    border-right: 0.25rem solid var(--accent-orange); /* ~4px */
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    animation: blinkCaret 0.6s step-end infinite;
+    text-shadow: 0 0 0.9375rem rgba(255, 153, 0, 0.8); /* ~15px */
+}
+
+
+/* Content Sections */
+.content-section {
+    padding: 6.25rem 0; /* ~100px */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 0.0625rem solid var(--border-color); /* ~1px */
+    border-top: 0.0625rem solid var(--border-color); /* ~1px */
+}
+
+.content-section:nth-of-type(odd) {
+    background-color: var(--secondary-bg);
+    background-image: linear-gradient(rgba(26, 26, 51, 0.8), rgba(26, 26, 51, 0.8));
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.content-section:nth-of-type(even) {
+    background-color: var(--primary-bg);
+    background-image: radial-gradient(circle at center, rgba(0, 230, 230, 0.05) 0%, transparent 60%);
+}
+
+/* About Us Section */
+.about-us {
+    background-image: radial-gradient(circle at top left, rgba(0, 230, 230, 0.08) 0%, transparent 50%),
+                      radial-gradient(circle at bottom right, rgba(255, 153, 0, 0.08) 0%, transparent 50%);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); /* ~280px */
+    gap: 2.5rem; /* ~40px */
+    margin-top: 3.75rem; /* ~60px */
+}
+
+.about-card {
+    background-color: var(--primary-bg);
+    padding: 2.1875rem; /* ~35px */
+    border-radius: 1.125rem; /* ~18px */
+    border: 0.0625rem solid var(--border-color); /* ~1px */
+    box-shadow: 0 0.75rem 2.1875rem rgba(0, 0, 0, 0.4); /* ~12px 35px */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    transform: scale(0);
+    z-index: 0;
+}
+
+.about-card:hover::before {
+    opacity: 0.05;
+    transform: scale(1);
+}
+
+.about-card h3 {
+    color: var(--accent-orange);
+    text-shadow: 0 0 0.5rem rgba(255, 153, 0, 0.6); /* ~8px */
+    margin-bottom: 1.5625rem; /* ~25px */
+    position: relative;
+    padding-bottom: 0.75rem; /* ~12px */
+    z-index: 1;
+}
+
+.about-card h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 3.75rem; /* ~60px */
+    height: 0.25rem; /* ~4px */
+    background: var(--gradient-orange);
+    border-radius: 0.125rem; /* ~2px */
+    box-shadow: 0 0 0.625rem rgba(255, 153, 0, 0.7); /* ~10px */
+}
+
+.about-card p {
+    font-size: 1.05rem; /* ~16.8px */
+    color: var(--text-color);
+    z-index: 1;
+}
+
+.about-card:hover {
+    transform: translateY(-0.75rem); /* ~12px */
+    box-shadow: 0 1.125rem 3.125rem rgba(0, 230, 230, 0.5); /* ~18px 50px */
+    border-color: var(--accent-blue);
+}
+
+.card-icon {
+    font-size: 3.5rem; /* ~56px */
+    margin-bottom: 1.5625rem; /* ~25px */
+    color: var(--accent-blue);
+    text-shadow: 0 0 0.9375rem var(--shadow-light); /* ~15px */
+    filter: drop-shadow(0 0 0.625rem var(--shadow-light)); /* ~10px */
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover .card-icon {
+    transform: rotateY(15deg) scale(1.1);
+}
+
+
+/* Mission & Vision Section */
+.mission-vision {
+    position: relative;
+    padding: 7.5rem 0; /* ~120px */
+    border-bottom: 0.3125rem solid var(--accent-orange); /* ~5px */
+    box-shadow: 0 0 2.5rem rgba(255, 153, 0, 0.2); /* ~40px */
+}
+
+.mission-vision::before,
+.mission-vision::after {
+    content: '';
+    position: absolute;
+    width: 15.625rem; /* ~250px */
+    height: 15.625rem; /* ~250px */
+    border-radius: 50%;
+    filter: blur(7.5rem); /* ~120px */
+    z-index: 0;
+    opacity: 0.25;
+    animation: neonGlow 5s infinite alternate ease-in-out;
+}
+
+.mission-vision::before {
+    background: var(--accent-blue);
+    top: 5%;
+    left: -10%;
+}
+
+.mission-vision::after {
+    background: var(--accent-orange);
+    bottom: 5%;
+    right: -10%;
+    animation-delay: 2.5s;
+}
+
+.mission-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3.75rem; /* ~60px */
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+.mission-text {
+    flex: 2;
+    min-width: 21.875rem; /* ~350px */
+}
+
+.mission-text h2 {
+    text-align: left;
+    margin-bottom: 1.875rem; /* ~30px */
+}
+
+.mission-text h2::after {
+    left: 0;
+    transform: translateX(0);
+}
+
+.mission-text p {
+    font-size: 1.15rem; /* ~18.4px */
+    margin-bottom: 1.25rem; /* ~20px */
+    color: var(--text-color);
+}
+
+.mission-image {
+    flex: 1;
+    min-width: 18.75rem; /* ~300px */
+    text-align: center;
+}
+
+.mission-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1.25rem; /* ~20px */
+    box-shadow: 0 0 2.5rem rgba(0, 230, 230, 0.6); /* ~40px */
+    border: 0.1875rem solid var(--accent-blue); /* ~3px */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.mission-image img:hover {
+    transform: scale(1.05) rotateZ(2deg);
+    box-shadow: 0 0 3.125rem rgba(255, 153, 0, 0.8); /* ~50px */
+    border-color: var(--accent-orange);
+}
+
+/* Future Vision Section */
+.future-vision {
+    padding-bottom: 7.5rem; /* ~120px */
+    background-image: linear-gradient(rgba(13, 13, 26, 0.9), rgba(13, 13, 26, 0.9));
+    background-size: cover;
+    background-attachment: fixed;
+    border-top: 0.3125rem solid var(--accent-blue); /* ~5px */
+    box-shadow: 0 0 2.5rem rgba(0, 230, 230, 0.2); /* ~40px */
+}
+
+.future-intro {
+    font-size: 1.5rem; /* ~24px */
+    margin-bottom: 4.375rem; /* ~70px */
+    max-width: 56.25rem; /* ~900px */
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+.future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); /* ~280px */
+    gap: 2.5rem; /* ~40px */
+    margin-top: 3.125rem; /* ~50px */
+    margin-bottom: 5rem; /* ~80px */
+}
+
+.future-item {
+    background-color: var(--secondary-bg);
+    padding: 2.1875rem; /* ~35px */
+    border-radius: 0.9375rem; /* ~15px */
+    border: 0.0625rem solid var(--border-color); /* ~1px */
+    box-shadow: 0 0.5rem 1.5625rem rgba(0, 0, 0, 0.3); /* ~8px 25px */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.future-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--accent-orange) 0%, transparent 100%);
+    opacity: 0;
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.future-item:hover::before {
+    width: 12.5rem; /* ~200px */
+    height: 12.5rem; /* ~200px */
+    opacity: 0.07;
+}
+
+.future-item:hover {
+    transform: translateY(-0.625rem) rotateZ(-1deg); /* ~10px */
+    box-shadow: 0 0.9375rem 2.5rem rgba(255, 153, 0, 0.4); /* ~15px 40px */
+    border-color: var(--accent-orange);
+}
+
+.icon-placeholder {
+    font-size: 4rem; /* ~64px */
+    margin-bottom: 1.5625rem; /* ~25px */
+    color: var(--accent-orange);
+    text-shadow: 0 0 1.125rem var(--shadow-dark); /* ~18px */
+    transition: transform 0.3s ease;
+}
+
+.future-item:hover .icon-placeholder {
+    transform: scale(1.1) rotateY(10deg);
+}
+
+/* Specific styling for the future-item with an image */
+.future-item-visual {
+    background-color: var(--primary-bg); /* A slight variation */
+    border: 0.125rem solid var(--accent-blue); /* A distinct border */
+    box-shadow: 0 0.75rem 2.5rem rgba(0, 230, 230, 0.4);
+}
+
+.future-item-visual:hover {
+    transform: translateY(-0.8rem);
+    box-shadow: 0 1.25rem 3.5rem rgba(0, 230, 230, 0.6);
+    border-color: var(--accent-orange); /* Changes color on hover */
+}
+
+.future-visual-img {
+    max-width: 100%;
+    height: 10rem; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers area */
+    border-radius: 0.75rem; /* Slightly less rounded than cards */
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 1.5rem rgba(0, 230, 230, 0.5); /* Glow for image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.future-item-visual:hover .future-visual-img {
+    transform: scale(1.03); /* Subtle zoom on image hover */
+    box-shadow: 0 0 2rem rgba(255, 153, 0, 0.7); /* Orange glow on image hover */
+}
+
+.future-item h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.9375rem; /* ~15px */
+}
+
+.future-item p {
+    font-size: 1.05rem; /* ~16.8px */
+    color: var(--text-color);
+}
+
+.future-cta {
+    margin-top: 5rem; /* ~80px */
+}
+
+.future-cta p {
+    font-size: 1.6rem; /* ~25.6px */
+    margin-bottom: 2.5rem; /* ~40px */
+    color: var(--heading-color);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 0.9375rem var(--shadow-dark); /* Using dark shadow variable for orange glow */
+}
+
+
+/* Footer */
+.site-footer {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    padding: 3.125rem 0; /* ~50px */
+    text-align: center;
+    border-top: 0.1875rem solid var(--accent-blue); /* ~3px */
+    box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.6) inset; /* ~30px */
+}
+
+.site-footer p {
+    margin-bottom: 0.75rem; /* ~12px */
+    font-size: 1rem; /* ~16px */
+}
+
+.site-footer .social-links a {
+    color: var(--accent-blue);
+    font-size: 2rem; /* ~32px */
+    margin: 0 1.125rem; /* ~18px */
+    transition: color 0.4s ease, transform 0.4s ease;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 230, 230, 0.4)); /* ~8px */
+}
+
+.site-footer .social-links a:hover {
+    color: var(--accent-orange);
+    transform: translateY(-0.3125rem) scale(1.2); /* ~5px */
+    filter: drop-shadow(0 0 0.9375rem rgba(255, 153, 0, 0.6)); /* ~15px */
+}
+
+/* Animations (values are already in unitless numbers, so no change needed) */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Removed logoPulse as logo is removed */
+/* @keyframes logoPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--shadow-light)); }
+    100% { transform: scale(1.06); filter: drop-shadow(0 0 35px var(--shadow-light)); }
+} */
+
+@keyframes blinkCaret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-orange); }
+}
+
+@keyframes neonGlow {
+    0% { transform: scale(1); opacity: 0.25; }
+    50% { transform: scale(1.08); opacity: 0.4; }
+    100% { transform: scale(1); opacity: 0.25; }
+}
+
+@keyframes floatingGlow {
+    0% { transform: translateX(0) translateY(0); opacity: 0.2; }
+    25% { transform: translateX(20px) translateY(-20px); opacity: 0.25; }
+    50% { transform: translateX(-20px) translateY(20px); opacity: 0.3; }
+    75% { transform: translateX(30px) translateY(10px); opacity: 0.25; }
+    100% { transform: translateX(0) translateY(0); opacity: 0.2; }
+}
+
+
+/* Scroll Fade In Effect */
+.js-scroll {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.js-scroll.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    /* h1 is now clamp, so specific media query might be less needed */
+    /* h1 {
+        font-size: 3rem;
+    } */
+
+    h2 {
+        font-size: 2.5rem; /* ~40px */
+    }
+
+    /* .hero-logo removed */
+
+    /* tagline is now clamp */
+    /* .tagline {
+        font-size: 1.6rem;
+    } */
+
+    /* slogan is now clamp */
+    /* #animated-slogan {
+        font-size: 2rem;
+    } */
+
+    .mission-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mission-text h2 {
+        text-align: center;
+    }
+
+    .mission-text h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .mission-image {
+        order: -1;
+    }
+
+    .section-intro {
+        font-size: 1.2rem; /* ~19.2px */
+    }
+}
+
+@media (max-width: 600px) {
+    /* h1, h2, h3 are now clamp, these might not be strictly necessary, 
+       but keeping them for finer control if needed */
+    h1 {
+        font-size: 2.5rem; /* overrides clamp min if smaller, but clamp better for range */
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+    }
+
+    /* .hero-logo removed */
+
+    .tagline {
+        font-size: 1.3rem;
+    }
+
+    #animated-slogan {
+        font-size: 1.6rem;
+        height: 3.125rem; /* ~50px */
+    }
+
+    .cta-button {
+        padding: 0.9375rem 1.875rem; /* ~15px 30px */
+        font-size: 1.1rem; /* ~17.6px */
+    }
+
+    .about-grid, .future-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-section {
+        padding: 5rem 0; /* ~80px */
+    }
+
+    .mission-vision {
+        padding: 6.25rem 0; /* ~100px */
+    }
+
+    .site-footer {
+        padding: 2.5rem 0; /* ~40px */
+    }
+
+    .section-intro {
+        font-size: 1.1rem; /* ~17.6px */
+    }
+
+    .social-links a {
+        font-size: 1.8rem !important; /* ~28.8px */
+    }
+
+    .future-visual-img {
+        height: 8rem; /* Smaller height on small screens */
+    }
+}
